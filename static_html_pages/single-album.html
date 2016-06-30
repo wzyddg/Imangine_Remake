@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Single-Album</title>
+    <link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Metushi Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+ <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+
+        $(function(){
+            $(".hov").hide();
+            $(".text").hide();
+            $(".col-md-3").hover(
+                    function()
+                    {
+                        $(this).find(".hov").stop().fadeTo(286,0.5);
+                        $(this).find(".text").stop().show();
+                    },
+                    function()
+                    {
+                        $(this).find(".hov").stop().fadeTo(286, 0);
+                        $(this).find(".text").stop().hide();
+                    });
+        });
+
+        function change(n){
+            if(n%2==1){
+                document.getElementById('l'+(n+1)).style.display="inline";
+                document.getElementById('l'+n).style.display="none";
+            }
+            if(n%2==0){
+                document.getElementById('l'+n).style.display="none";
+                document.getElementById('l'+(n-1)).style.display="inline";
+            }
+        }
+
+ </script>
+    <style>
+        .thumbnail {
+            max-height:210px;
+            min-height:200px;
+            overflow:hidden;
+            bottom:0;
+            margin:0;
+            padding: 0;
+        }
+        .who-liked {
+            width: 100%;
+            float: left;
+            padding: 10px;
+            background-color: rgba(255,86,86,0.2);
+            border-radius: 20px;
+
+        }
+        .single-top img
+        {
+            max-width:500px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+	<div class="navigation-strip">
+        <div class="container">
+            <div class="nav_content">
+                <div class="home">
+                    <a href="index.html"><img src="images/imangine.png" alt="" /></a>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="reglogbar-user pull-right">
+                    <div class="userp">
+                        <a href="#"> <span>Jully Coco &nbsp;</span> </a>
+                        <a href="#"> <img src="images/user-p.png" /> </a>
+                    </div>
+                </div>
+                <span class="menu"></span>
+                <div class="top-menu">
+                    <ul>
+                        <li><a class="active" href="pic.html">Picture</a></li>
+                        <li><a href="album.html">Album</a></li>
+                        <li><a href="group.html">Group</a></li>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="about.html">About us</a></li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <!-- script for menu -->
+                <script>
+                    $( "span.menu" ).click(function() {
+                        $( ".top-menu" ).slideToggle( "slow", function() {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script for menu -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+	</div>
+	<div class="content">
+		<div class="container">
+			<div class="single">				
+				<!-- head-section -->
+					<div class="head-section text-center">
+						<h2>Rolling in the deep</h2>
+                        <img class="likeit" id="l1" onclick="change(1)"  style="display:inline;" src="images/hollowheart.png"/>
+                        <img class="likeit" id="l2" onclick="change(2)"  style="display:none;" src="images/fullheart.png"/>
+						<!--<span> </span>-->
+					</div>
+					<!-- /head-section -->	
+				<div class="single-top ">
+					<img  src="images/cover1.jpg" alt=""/>
+				</div>
+				<div class="top-single">
+				<h2>The Discription of the Album.</h2>
+                <div class="pull-right"><a href="pic-modify.html">Album Management</a></div>
+					<div class="grid-single">
+						<div class="single-one"><span><i> </i>12/03/2014 </span></div>
+						<div class="single-one"><span><a href="#"><i class="com"> </i>3</a></span></div>
+						<div class="single-one"><span><i class="four"> </i>400</span></div>
+						<div class="clearfix"> </div>
+					</div>
+
+                    <div class="album-content">
+                        <div class="row">
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p1.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l3" onclick="change(3)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l4" onclick="change(4)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>Animation <span>Spongbob</span></div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p2.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l5" onclick="change(5)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l6" onclick="change(6)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>天若有情 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p3.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l7" onclick="change(7)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l8" onclick="change(8)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>寻声暗问弹者谁 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p4.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l9" onclick="change(9)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l10" onclick="change(10)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>未成曲调先有情 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p5.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l11" onclick="change(11)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l12" onclick="change(12)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>冰泉冷涩弦凝绝 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p6.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l13" onclick="change(13)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l14" onclick="change(14)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>银瓶乍破水浆迸 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"> <img src="images/p7.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l15" onclick="change(15)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l16" onclick="change(16)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>妆成每被秋娘妒 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p8.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l17" onclick="change(17)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l18" onclick="change(18)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>钿头银篦击节碎 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p9.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l19" onclick="change(19)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l20" onclick="change(20)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>冰泉冷涩弦凝绝 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p10.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l21" onclick="change(21)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l22" onclick="change(22)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>银瓶乍破水浆迸 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p11.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l23" onclick="change(23)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l24" onclick="change(24)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>妆成每被秋娘妒 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p12.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l25" onclick="change(25)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l26" onclick="change(26)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>钿头银篦击节碎 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p13.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l27" onclick="change(27)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l28" onclick="change(28)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>冰泉冷涩弦凝绝 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p14.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l29" onclick="change(29)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l30" onclick="change(30)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>银瓶乍破水浆迸 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p15.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l31" onclick="change(31)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l32" onclick="change(32)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>妆成每被秋娘妒 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                            <div class="col-md-3 project">
+                                <a href="single.html" class="thumbnail"><img src="images/p16.jpg" alt="" /></a>
+                                <div class="hov">
+                                    <img class="likeit pull-right" id="l33" onclick="change(33)" style="display:inline;"  src="images/hollowheart.png"/>
+                                    <img class="likeit pull-right" id="l34" onclick="change(34)" style="display:none;"  src="images/fullheart.png"/>
+                                </div>
+                                <a href="single.html"><div class="text"><div>钿头银篦击节碎 POST TIME :2014.99999999999999902.21</div></div></a>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <a href=""><label>View All</label></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+			<div class="single-middle">
+				<div class="postor-info">
+                    <div class=" col-md-2 postor-port">
+                        <a href="blog.html"><img src="images/Spong-portrait.jpg" alt="" />
+                        </a>
+                    </div>
+                    <div class="col-md-5 postor-info-i">
+                        <span>Spongebob</span>
+                    </div>
+                    <div class="col-md-5 postor-info-i">
+                        SPONGEBOB SQUAREPANTS! Absorbant and yellow and poreous is me!
+                    </div>
+				</div>
+
+                <div class="who-liked">
+                    <img  src="images/fullheart.png" alt=""/>
+                    <img  src="images/port1.jpg" alt=""/>
+                    <img  src="images/port2.jpg" alt=""/>
+                    <img  src="images/port3.jpg" alt=""/>
+                    <img  src="images/port4.jpg" alt=""/>
+                    <img  src="images/port5.jpg" alt=""/>
+                    <img  src="images/port6.jpg" alt=""/>
+                    <a href=""><label>View All</label></a>
+                </div>
+                <!--<div class="collected-album ">-->
+                    <!--<img  src="images/album.png" alt=""/>-->
+                    <!--<img  src="images/cover1.jpg" alt=""/>-->
+                    <!--<img  src="images/cover2.jpg" alt=""/>-->
+                    <!--<img  src="images/cover3.jpg" alt=""/>-->
+                    <!--<img  src="images/cover4.jpg" alt=""/>-->
+                    <!--<img  src="images/cover5.jpg" alt=""/>-->
+
+                <!--</div>-->
+                <div class="clearfix"> </div>
+			</div>
+			<div class="top-comments">
+			<h3>Comments</h3>
+			<div class="met">
+				<div class="code-in">
+					<p class="smith"><a href="#">Robert Smith</a> <span>02 June 2014, 15:20</span></p>
+
+					<div class="clearfix"> </div>
+				</div>
+				<div class="comments-top-top">
+					<div class="men" >
+						<img   src="images/port1.jpg" alt="">
+					</div>					
+						<p class="men-it">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less </p>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+
+			<div class="met">
+				<div class="code-in">
+					<p class="smith"><a href="#">Jessica Alba</a> <span>02 June 2014, 15:20</span></p>
+
+					<div class="clearfix"> </div>
+				</div>
+				<div class="comments-top-top">
+					<div class="men" >
+						<img  src="images/port3.jpg" alt="">
+					</div>					
+						<p class="men-it">"We're such a young company, and we’re just getting started," Alba told The Huffington Post in a phone interview. "We’ve laid a strong foundation, but this is just the beginning."</p>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+		<div class="leave">
+			<h3>Leave a comment</h3>
+				<form>
+					<div class="col-md-1">
+                        <div class="leave-info">
+                            <div class="leave-port">
+                                <img  src="images/Spong-portrait.jpg" alt="">
+                            </div>
+                            <div>
+                                <span>Spongbob</span>
+                            </div>
+                        </div>
+					</div>
+					<div class="text-top">
+						<div class="col-md-8 text-in">
+							<textarea  value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Comment';}">Comment</textarea>
+						</div>
+						<div class="col-md-3 text-in">
+							<input type="submit" value="SEND" >
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</form>
+
+				</div>
+			</div>			
+		</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="col-md-4 footer-grid">
+					<h5>ABOUT US</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in purus nibh. Donec ornare felis neque. Nullam tortor nulla, sodales quis posuere quis, tristique nec libero. Proin vitae convallis odio. Morbi nec enim nisi. Aliquam erat volutpat. </p>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<h5>TWITTER FEED</h5>
+					<p>Check out th best Themes online in the world <br>at <a href="mail-to:example.com">http://example.com </a></p>
+					<span>1 day ago</span>
+					<p><a href="#">@envanto</a>, Motive wordpress theme full responsive is coming soon...</p>
+					<span>4 day ago</span>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<h5>FOLLOW US</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in purus nibh. Donec ornare felis neque. Nullam tortor! </p>
+					
+			<div class="social-icons">
+				<a href="#"><i class="twitter"></i></a>
+				<a href="#"><i class="facebook"></i></a>
+				<a href="#"><i class="dribble"></i></a>
+				<a href="#"><i class="rss"></i></a>
+			</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="copyrights">
+                    <p>Copyright &copy; 2015.Imangine All rights reserved.</p>
+				</div>
+				<div class="go-top">
+					<a href="#header" class="scroll"><img src="images/go-to-top.png" alt="" /></a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

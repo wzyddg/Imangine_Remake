@@ -1,0 +1,873 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.7
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: 2016-01-14 13:01:24
+-- 服务器版本： 5.6.22
+-- PHP Version: 5.6.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `imangine`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `album`
+--
+
+CREATE TABLE IF NOT EXISTS `album` (
+  `album_id` int(32) NOT NULL,
+  `setter_id` int(32) NOT NULL,
+  `picture_num` int(32) NOT NULL,
+  `set_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` varchar(255) DEFAULT NULL,
+  `cover_path` varchar(128) DEFAULT 'images/content-bg.jpg',
+  `theme` varchar(32) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `album`
+--
+
+INSERT INTO `album` (`album_id`, `setter_id`, `picture_num`, `set_date`, `description`, `cover_path`, `theme`) VALUES
+(1, 15, 2, '2015-06-11 14:52:41', '这是一张专辑，第一', 'files/cover5.jpg', '文艺青年'),
+(2, 14, 1, '2015-06-11 15:29:02', '如玉如英', 'files/cover3.jpg', '君子'),
+(4, 14, 0, '2015-07-06 17:55:37', '这是我个人的第二张专辑', 'files/p32.jpg', '花式'),
+(5, 16, 0, '2015-07-06 17:55:59', '我的专辑', 'files/p9.jpg', '时尚');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `album_included`
+--
+
+CREATE TABLE IF NOT EXISTS `album_included` (
+  `album_id` int(32) NOT NULL,
+  `picture_id` int(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `album_included`
+--
+
+INSERT INTO `album_included` (`album_id`, `picture_id`) VALUES
+(1, 24),
+(1, 25),
+(2, 25),
+(1, 41),
+(1, 43),
+(1, 44),
+(1, 45),
+(1, 46),
+(1, 47),
+(1, 48),
+(1, 49);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `album_liked`
+--
+
+CREATE TABLE IF NOT EXISTS `album_liked` (
+  `album_id` int(32) NOT NULL,
+  `user_id` int(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `album_liked`
+
+
+CREATE TABLE IF NOT EXISTS `album_comment` (
+  `comment_id` int(32) NOT NULL,
+  `album_id` int(32) NOT NULL,
+  `user_id` int(32) NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `content` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+--
+
+INSERT INTO `album_liked` (`album_id`, `user_id`) VALUES
+(1, 17),
+(4, 14),
+(5, 19);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `friend`
+--
+
+CREATE TABLE IF NOT EXISTS `friend` (
+  `my_id` int(32) NOT NULL,
+  `friend_id` int(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group`
+--
+
+CREATE TABLE IF NOT EXISTS `group` (
+  `group_id` int(32) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `member_num` int(32) DEFAULT NULL,
+  `setter_id` int(32) NOT NULL,
+  `set_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `theme` varchar(32) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `group`
+--
+
+INSERT INTO `group` (`group_id`, `name`, `member_num`, `setter_id`, `set_date`, `theme`) VALUES
+(1, 'Artists', 2, 17, '2015-07-07 19:27:59', 'Art And So On'),
+(2, 'players', 1, 14, '2015-07-07 19:26:42', 'weplaywell'),
+(3, 'yeahyeah', 2, 14, '2015-07-07 19:28:04', 'StopSleeping');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group_comment`
+--
+
+CREATE TABLE IF NOT EXISTS `group_comment` (
+  `comment_id` int(32) NOT NULL,
+  `group_id` int(32) NOT NULL,
+  `user_id` int(32) NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `content` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `group_comment`
+--
+
+INSERT INTO `group_comment` (`comment_id`, `group_id`, `user_id`, `comment_date`, `content`) VALUES
+(1, 2, 14, '2015-07-08 01:56:11', '哈哈哈你们小组好厉害'),
+(2, 2, 18, '2015-07-08 01:56:11', '都是一些很有意思的人'),
+(3, 2, 14, '2015-07-08 02:20:58', '阿卡的卡死机读卡算法'),
+(4, 3, 19, '2016-01-13 07:40:41', 'ljhokjhhj;gj');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `group_member`
+--
+
+CREATE TABLE IF NOT EXISTS `group_member` (
+  `group_id` int(32) NOT NULL,
+  `user_id` int(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `group_member`
+--
+
+INSERT INTO `group_member` (`group_id`, `user_id`) VALUES
+(2, 14),
+(3, 14),
+(1, 17),
+(1, 14),
+(3, 17);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `picture`
+--
+
+CREATE TABLE IF NOT EXISTS `picture` (
+  `picture_id` int(32) NOT NULL,
+  `path` varchar(128) NOT NULL,
+  `poster_id` int(32) DEFAULT NULL,
+  `upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `title` varchar(32) NOT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `picture`
+--
+
+INSERT INTO `picture` (`picture_id`, `path`, `poster_id`, `upload_date`, `title`, `description`) VALUES
+(24, 'files/p35.jpg', 14, '2015-06-09 02:31:11', '画画', '比较清新的一张图片，好看！'),
+(25, 'files/p37.jpg', 15, '2015-06-09 02:31:11', '方兰生', '温然发秀质，馥兰映琼瑶。'),
+(36, 'files/14/14_1436142049557.png', 14, '2015-07-06 00:20:51', 'qwe', 'zxczxc'),
+(37, 'files/14/14_1436142076875.jpg', 14, '2015-07-06 00:21:17', 'pop3', ''),
+(38, 'files/14/14_1436142161155.jpg', 14, '2015-07-06 00:22:41', 'ACC', '刺客信条编年史'),
+(39, 'files/14/14_1436142209446.jpg', 14, '2015-07-06 00:23:29', ' Master Chief', '帅气的士官长'),
+(40, 'files/14/14_1436145267691.jpg', 14, '2015-07-06 01:14:28', '人类补完计划', '骗你的哈哈哈'),
+(41, 'files/14/14_1436145293930.jpg', 14, '2015-07-06 01:14:54', 'nonono', '水墨风格！'),
+(42, 'files/14/14_1436145337760.jpg', 14, '2015-07-06 01:15:38', '哦哦哦哦哦！！！', '仙剑5七位长老'),
+(43, 'files/14/14_1436145364944.jpg', 14, '2015-07-06 01:16:05', '星际2载入画面', '从宇宙看星球'),
+(44, 'files/14/14_1436152756454.jpg', 14, '2015-07-06 03:19:16', '母鸡啊', '非常好看的一个美女'),
+(45, 'files/14/14_1436186905634.jpg', 14, '2015-07-06 12:48:26', '师尊！', '师尊帅帅的！！！'),
+(46, 'files/14/14_1436187040922.jpg', 14, '2015-07-06 12:50:41', '师尊和小苏苏！！！', '还是师尊最帅没有其他！'),
+(47, 'files/14/14_1436190205076.jpg', 14, '2015-07-06 13:43:25', 'dsfsd ', 'dsfgsdfbhfgvbhfdfg'),
+(48, 'files/16/16_1436190645943.jpg', 16, '2015-07-06 13:50:46', '788', '88'),
+(49, 'files/16/16_1436190686139.jpg', 16, '2015-07-06 13:51:26', '213', '43'),
+(50, 'files/16/16_1436190714639.jpg', 16, '2015-07-06 13:51:55', '989', '打啊'),
+(51, 'files/16/16_1436190744774.jpg', 16, '2015-07-06 13:52:25', '热舞', '权威'),
+(52, 'files/16/16_1436190919666.jpg', 16, '2015-07-06 13:55:20', '413', ''),
+(53, 'files/16/16_1436191068556.JPG', 16, '2015-07-06 13:57:49', '12', '温泉'),
+(54, 'files/17/17_1436191321925.jpg', 17, '2015-07-06 14:02:02', '32', '1'),
+(55, 'files/17/17_1436191334081.jpg', 17, '2015-07-06 14:02:14', '5432', '12321'),
+(56, 'files/17/17_1436191348031.jpg', 17, '2015-07-06 14:02:28', '53463', '123'),
+(57, 'files/17/17_1436191359078.jpg', 17, '2015-07-06 14:02:39', '543', '890'),
+(58, 'files/17/17_1436191374495.jpg', 17, '2015-07-06 14:02:55', '98', '发生的1'),
+(59, 'files/18/18_1436191472280.jpg', 18, '2015-07-06 14:04:32', '5342', '345'),
+(60, 'files/18/18_1436191488543.jpg', 18, '2015-07-06 14:04:49', '546', '分公司的'),
+(61, 'files/18/18_1436191499737.jpg', 18, '2015-07-06 14:05:00', '手动阀', '发到2'),
+(62, 'files/18/18_1436191511870.jpg', 18, '2015-07-06 14:05:12', '231', '娃儿'),
+(63, 'files/18/18_1436191523973.jpg', 18, '2015-07-06 14:05:24', '23', '1234'),
+(64, 'files/18/18_1436191538105.jpg', 18, '2015-07-06 14:05:38', '341', '弖'),
+(65, 'files/19/19_1436191685506.jpg', 19, '2015-07-06 14:08:06', '发生大声道', '发生的'),
+(66, 'files/19/19_1436191709160.jpg', 19, '2015-07-06 14:08:29', ' 自行车v', 'asdfgh'),
+(67, 'files/19/19_1436191725063.jpg', 19, '2015-07-06 14:08:45', 'ads', 'oxicv'),
+(68, 'files/19/19_1436191777858.jpg', 19, '2015-07-06 14:09:38', 'oiv', 'xicuvyb'),
+(69, 'files/19/19_1436191799694.jpg', 19, '2015-07-06 14:10:00', 'zxc', 'dszfgh'),
+(70, 'files/20/20_1436191974167.jpg', 20, '2015-07-06 14:12:54', ' 分', 'sdf'),
+(71, 'files/20/20_1436191984509.jpg', 20, '2015-07-06 14:13:05', 'd', 'qwer'),
+(72, 'files/20/20_1436192001429.jpg', 20, '2015-07-06 14:13:21', 'fghjh', 'werhj'),
+(73, 'files/20/20_1436192038297.jpg', 20, '2015-07-06 14:13:58', 'asdf', 'tfhd'),
+(74, 'files/20/20_1436192049862.jpg', 20, '2015-07-06 14:14:10', 'mn', 'tre'),
+(75, 'files/21/21_1436192281925.jpg', 21, '2015-07-06 14:18:02', 'fdgs', 'rwe'),
+(76, 'files/21/21_1436192293588.jpg', 21, '2015-07-06 14:18:14', 'rt', 'yrt'),
+(77, 'files/21/21_1436192307536.jpg', 21, '2015-07-06 14:18:28', 'jghfd', 't'),
+(78, 'files/21/21_1436192321733.jpg', 21, '2015-07-06 14:18:42', 'tre', 'ytr'),
+(79, 'files/21/21_1436192338455.jpg', 21, '2015-07-06 14:18:58', 'cvx', 're'),
+(80, 'files/21/21_1436192349825.jpg', 21, '2015-07-06 14:19:10', 'ret', 'wrtyret'),
+(81, 'files/22/22_1436192381220.jpg', 22, '2015-07-06 14:19:41', 're', 'qwe'),
+(82, 'files/22/22_1436192390466.jpg', 22, '2015-07-06 14:19:50', 'ty', 'iuo'),
+(83, 'files/22/22_1436192401750.jpg', 22, '2015-07-06 14:20:02', 'po[', 'uipo'),
+(84, 'files/22/22_1436192411500.jpg', 22, '2015-07-06 14:20:12', 'uio', 'rtye'),
+(85, 'files/22/22_1436192419873.jpg', 22, '2015-07-06 14:20:20', 'rte', '5234'),
+(86, 'files/22/22_1436192430561.jpg', 22, '2015-07-06 14:20:31', '2314', '1234'),
+(87, 'files/22/22_1436192494821.jpg', 22, '2015-07-06 14:21:36', '15263', 'tg'),
+(88, 'files/14/14_1436192887053.jpg', 14, '2015-07-06 14:28:07', '新八的人生', '青鱼干鳉鱼干青鳉鱼干看什么看这是恒星而已'),
+(89, 'files/19/19_1436261083819.jpg', 19, '2015-07-07 09:24:44', '小宇让上传的', '妈了个鸡\r\n'),
+(90, 'files/19/19_1436264344633.jpg', 19, '2015-07-07 10:19:05', '商务人们', '非常鸡汁的一张图片'),
+(91, 'files/19/19_1436266553447.jpg', 19, '2015-07-07 10:55:53', '蜀江水碧蜀山青', '圣主朝朝暮暮情'),
+(92, 'files/19/19_1436266653519.jpg', 19, '2015-07-07 10:57:34', '汉皇思倾国', '御宇多年求不得'),
+(93, 'files/19/19_1436266704631.jpg', 19, '2015-07-07 10:58:25', '杨家有女初长成', '养在深闺人未识'),
+(94, 'files/19/19_1436266744079.jpg', 19, '2015-07-07 10:59:04', '天生丽质难自弃', '一朝选在君王侧'),
+(95, 'files/19/19_1436266782781.jpg', 19, '2015-07-07 10:59:43', '回眸一笑百媚生', '六宫粉黛无颜色'),
+(96, 'files/17/17_1436267124042.jpg', 17, '2015-07-07 11:05:24', '我是来攻击哒！', '2333333333333333'),
+(97, 'files/17/17_1436267217781.jpg', 17, '2015-07-07 11:06:58', '我是来攻击哒！', '2333333333333333333333333'),
+(98, 'files/17/17_1436267250692.jpg', 17, '2015-07-07 11:07:31', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(99, 'files/17/17_1436267295338.jpg', 17, '2015-07-07 11:08:15', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(100, 'files/17/17_1436267327084.jpg', 17, '2015-07-07 11:08:47', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(101, 'files/17/17_1436267363790.jpg', 17, '2015-07-07 11:09:24', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(102, 'files/17/17_1436267399767.jpg', 17, '2015-07-07 11:10:00', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(103, 'files/17/17_1436267479663.jpg', 17, '2015-07-07 11:11:20', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(104, 'files/18/18_1436267509139.jpg', 18, '2015-07-07 11:11:49', '春寒', '周末，烦人的梅雨终于有了住脚的时候'),
+(105, 'files/17/17_1436267553435.jpg', 17, '2015-07-07 11:12:33', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(106, 'files/18/18_1436267564483.jpg', 18, '2015-07-07 11:12:44', '华清', '心一下子被那碧波万顷，直逼眼帘的绿抓住'),
+(107, 'files/17/17_1436267645294.jpg', 17, '2015-07-07 11:14:05', '我是来攻击哒！', ''),
+(108, 'files/17/17_1436267658851.jpg', 17, '2015-07-07 11:14:19', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(109, 'files/17/17_1436267676868.jpg', 17, '2015-07-07 11:14:37', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(110, 'files/17/17_1436267694108.jpg', 17, '2015-07-07 11:14:54', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(111, 'files/18/18_1436267697000.jpg', 18, '2015-07-07 11:14:57', '回眸生', '翻着那一族族绿的剪影，乘着尚未平息的兴味'),
+(112, 'files/17/17_1436267721006.jpg', 17, '2015-07-07 11:15:21', '我是来攻击哒！', '	网页设置了最小宽度为1200px，宽度像素在1200以下时需要通过滚动条查看完整网页，网页使用了设备适配，但是出于简易可行考虑，网页目前主要针对普通笔记本电脑的屏幕尺寸设计，以1366*768下最佳。'),
+(113, 'files/18/18_1436267754559.jpg', 18, '2015-07-07 11:15:55', '侍儿', '便想为那浓妆艳抹的绿写点文字'),
+(114, 'files/18/18_1436267820789.jpg', 18, '2015-07-07 11:17:01', '玉京十二楼', '也算是为大自然绿的回响、绿的和鸣与绿的叹慰。'),
+(115, 'files/20/20_1436267954855.jpg', 20, '2015-07-07 11:19:15', '醉和春', '要是所思所想尽是些雷同之文字，那便毫无意思了'),
+(116, 'files/20/20_1436268025044.jpg', 20, '2015-07-07 11:20:25', '温泉水华', '也许大师之作在前，便无人敢步其后尘也'),
+(117, 'files/20/20_1436268101678.jpg', 20, '2015-07-07 11:21:42', '新承', '如写夏夜之繁华'),
+(118, 'files/20/20_1436268146505.jpg', 20, '2015-07-07 11:22:27', '繁华风', '盛夏之感悟，夏蝉之韵律'),
+(119, 'files/20/20_1436268863023.jpg', 20, '2015-07-07 11:34:24', '韵律', '但却未见一篇关于描写夏绿之佳作'),
+(120, 'files/20/20_1436268907320.jpg', 20, '2015-07-07 11:35:07', '佳作', '或许是余之所喜，和者聊聊吧'),
+(121, 'files/20/20_1436268938216.jpg', 20, '2015-07-07 11:35:38', '所喜', '夏之绿也许她太过平常'),
+(122, 'files/20/20_1436268972914.jpg', 20, '2015-07-07 11:36:13', '平常', '碧涛接天，铺地而来'),
+(123, 'files/20/20_1436269006762.jpg', 20, '2015-07-07 11:36:47', '碧桃', '漫山遍野，横无际涯'),
+(124, 'files/20/20_1436269040663.jpg', 20, '2015-07-07 11:37:21', '横涯', '使你连一点搜寻、遴选的余地都没有'),
+(125, 'files/20/20_1436269071036.jpg', 20, '2015-07-07 11:37:51', '余地', '她没有春花那般俏丽'),
+(126, 'files/20/20_1436269109559.jpg', 20, '2015-07-07 11:38:30', '俏也', '夏绿最缺乏诗情画意了'),
+(127, 'files/20/20_1436269138447.jpg', 20, '2015-07-07 11:38:58', '画意', '而余看夏绿，则在她的三境之美也'),
+(128, 'files/20/20_1436269165597.jpg', 20, '2015-07-07 11:39:26', '三景', '孟夏之时，绿之浅黄'),
+(129, 'files/17/17_1436332243958.png', 17, '2015-07-08 05:10:44', 'dabian', 'we''ve tried'),
+(130, 'files/19/19_1436334175344.jpg', 19, '2015-07-08 05:42:55', 'fds', 'sfd'),
+(131, 'files/19/19_1436336682357.png', 19, '2015-07-08 06:24:42', '加', '阿萨德'),
+(132, 'files/19/19_1452413859602.jpg', 19, '2016-01-10 08:17:40', '我问问', 'asddfhjkl'),
+(133, 'files/20/20_1436267954855.jpg', 14, '2016-01-13 12:39:38', 'jjj', 'dfghj');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `picture_comment`
+--
+
+CREATE TABLE IF NOT EXISTS `picture_comment` (
+  `comment_id` int(32) NOT NULL,
+  `picture_id` int(32) NOT NULL,
+  `user_id` int(32) NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `content` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `picture_comment`
+--
+
+INSERT INTO `picture_comment` (`comment_id`, `picture_id`, `user_id`, `comment_date`, `content`) VALUES
+(1, 24, 14, '2015-06-09 08:22:15', '哈哈哈哈哈哈哈哈哈哈哈哈哈太好玩了'),
+(2, 24, 15, '2015-06-09 08:22:15', '给楼主点赞！'),
+(3, 24, 14, '2015-06-09 08:22:39', '你在逗我吗'),
+(4, 25, 15, '2015-06-09 08:22:39', '挽尊！'),
+(5, 24, 14, '2015-06-09 10:59:33', '张森瑞哼哼哼'),
+(6, 24, 15, '2015-06-09 11:04:42', '王泽宇嘤嘤嘤'),
+(7, 25, 15, '2015-06-09 11:05:10', '日了狗了！\r\n'),
+(8, 25, 14, '2015-06-09 11:17:05', '图片非常的有韵味'),
+(9, 25, 14, '2015-06-09 11:17:12', '图片非常的有韵味'),
+(10, 25, 14, '2015-06-10 05:50:40', '二姐你快来看！终于成功了！'),
+(11, 25, 14, '2015-06-10 08:22:09', '小雨点说：前端压的真开心，下学期接着压！'),
+(12, 25, 14, '2015-06-10 08:22:26', 'Comment'),
+(13, 24, 14, '2015-07-04 17:58:13', 'Comment'),
+(14, 24, 14, '2015-07-04 17:58:21', ' '),
+(15, 24, 14, '2015-07-04 17:58:37', 'Comment'),
+(16, 24, 14, '2015-07-04 17:58:44', 'Comment'),
+(17, 24, 14, '2015-07-04 18:01:43', 'Comment'),
+(18, 24, 14, '2015-07-04 18:01:52', 'Comment'),
+(19, 24, 14, '2015-07-04 18:02:30', '我咋知道咋回事呢'),
+(20, 24, 14, '2015-07-04 18:05:05', '我想反馈一下这个问题'),
+(21, 24, 14, '2016-01-04 19:25:18', '当我傻么。。。'),
+(22, 24, 14, '2015-07-04 18:08:42', '傻缺'),
+(23, 24, 14, '2015-07-04 18:15:11', 'a '),
+(24, 24, 14, '2015-07-04 18:17:34', '啥！'),
+(25, 24, 14, '2015-07-04 18:18:21', '我就说怎么回事'),
+(26, 24, 14, '2015-07-04 18:18:45', 'Comment'),
+(27, 24, 14, '2015-07-04 18:18:49', 'Comment'),
+(28, 24, 14, '2015-07-04 18:21:21', '希望解决了'),
+(29, 24, 14, '2015-07-05 07:13:52', '终于解决了\r\n'),
+(30, 24, 14, '2015-07-05 12:42:36', '啧啧啧'),
+(31, 47, 14, '2015-07-06 13:43:48', 'beautiful\r\n'),
+(32, 89, 19, '2015-07-07 09:25:06', '这是什么鬼hhhhh'),
+(33, 42, 19, '2015-07-07 10:16:56', 'sdghjhgfdghjkl;jhsfdhgjkl;hgxfdbhkjlgZDV'),
+(34, 44, 21, '2015-07-07 10:47:17', '真棒'),
+(35, 127, 14, '2015-07-08 02:07:09', 'hahahah '),
+(36, 129, 17, '2015-07-08 05:11:06', 'hahaha'),
+(37, 50, 19, '2015-07-08 05:14:27', 'handsome!'),
+(38, 131, 19, '2015-07-08 06:24:49', '大撒谎就'),
+(39, 45, 18, '2016-01-04 19:26:19', 'this is middleware test'),
+(40, 36, 16, '2016-01-04 19:29:37', 'MW 2016.1.5'),
+(41, 36, 16, '2016-01-05 02:31:27', 'MW 2016.1.5 10:30'),
+(42, 36, 16, '2016-01-05 02:31:29', 'MW 2016.1.5 10:32'),
+(43, 36, 16, '2016-01-05 03:02:15', 'MW 2016.1.5 1102'),
+(44, 25, 19, '2016-01-10 08:16:48', '这是一次现场评论');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `picture_liked`
+--
+
+CREATE TABLE IF NOT EXISTS `picture_liked` (
+  `picture_id` int(32) NOT NULL,
+  `user_id` int(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `picture_liked`
+--
+
+INSERT INTO `picture_liked` (`picture_id`, `user_id`) VALUES
+(25, 15),
+(24, 15),
+(25, 14),
+(36, 14),
+(38, 14),
+(39, 14),
+(40, 14),
+(41, 14),
+(42, 14),
+(43, 14),
+(44, 14),
+(45, 14),
+(46, 14),
+(47, 14),
+(48, 14),
+(49, 14),
+(50, 14),
+(51, 14),
+(52, 14),
+(53, 14),
+(24, 18),
+(44, 18),
+(37, 17),
+(25, 17),
+(25, 17),
+(25, 17),
+(25, 14),
+(25, 17),
+(67, 20),
+(51, 17),
+(24, 19),
+(129, 19),
+(128, 19),
+(49, 19),
+(127, 19),
+(130, 19),
+(25, 19),
+(132, 19),
+(127, 14);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `picture_tag`
+--
+
+CREATE TABLE IF NOT EXISTS `picture_tag` (
+  `tag` varchar(32) NOT NULL,
+  `picture_id` int(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `picture_tag`
+--
+
+INSERT INTO `picture_tag` (`tag`, `picture_id`) VALUES
+('asd', 36),
+('hand', 37),
+('old', 37),
+('assassins creed', 38),
+('HALO', 39),
+('Master Chief', 39),
+('EVA', 40),
+('我就是这么厉害', 41),
+('仙剑', 42),
+('星际', 43),
+('美女', 44),
+('师尊', 45),
+('古剑', 45),
+('师尊', 46),
+('古剑', 46),
+('屠苏', 46),
+('fdhfghfg', 47),
+('fdhfghfgh', 47),
+('88', 48),
+('321', 49),
+('8974', 50),
+('温泉', 51),
+('各方', 52),
+('围绕的', 53),
+('3423', 54),
+('243', 55),
+('2341', 56),
+('567', 57),
+(' 341', 58),
+('2345', 59),
+('890', 60),
+(' 341', 61),
+('234', 62),
+('234', 63),
+('546', 64),
+('发送到发送到', 65),
+('asdfgh', 66),
+('soidfgb', 67),
+('cvkjbhg', 68),
+('oiyut', 69),
+('as', 70),
+('ty', 71),
+('fsd', 72),
+(';''lkjrew', 73),
+('dfg', 74),
+('asf', 75),
+('wer', 76),
+('qre', 77),
+('wey', 78),
+('qwe', 79),
+('ewrte', 80),
+('rwe', 81),
+('tuy', 82),
+('ipo', 83),
+('ruty', 84),
+('ert2345', 85),
+('234', 86),
+('uj', 87),
+('寿限无', 88),
+('蛋', 89),
+(' 鸡蛋', 89),
+('English', 90),
+('WOWO', 90),
+('Color', 91),
+('Beautiful', 91),
+('插画', 92),
+('意象', 92),
+('美好', 92),
+('色彩', 92),
+('插画', 93),
+('意象', 93),
+('美好', 93),
+('色彩', 93),
+('插画', 94),
+('意象', 94),
+('美好', 94),
+('色彩', 94),
+('插画', 95),
+('意象', 95),
+('美好', 95),
+('色彩', 95),
+('蛋蛋', 96),
+(' 攻击', 96),
+(' 黑你们！', 96),
+('蛋蛋', 97),
+('抖森', 98),
+('抖森', 99),
+('奥妹', 100),
+('吧唧', 101),
+('艾玛', 102),
+('萝卜', 103),
+('插画', 104),
+('意象', 104),
+('美好', 104),
+('色彩', 104),
+('桃子', 105),
+('插画', 106),
+('意象', 106),
+('美好', 106),
+('色彩', 106),
+('抖森', 107),
+('抖森', 108),
+('抖森', 109),
+('抖森', 110),
+('插画', 111),
+('意象', 111),
+('美好', 111),
+('色彩', 111),
+('抖森', 112),
+('插画', 113),
+('意象', 113),
+('美好', 113),
+('色彩', 113),
+('插画', 114),
+('意象', 114),
+('美好', 114),
+('色彩', 114),
+('插画', 115),
+('意象', 115),
+('美好', 115),
+('色彩', 115),
+('插画', 116),
+('意象', 116),
+('美好', 116),
+('色彩', 116),
+('插画', 117),
+('意象', 117),
+('美好', 117),
+('色彩', 117),
+('插画', 118),
+('意象', 118),
+('美好', 118),
+('色彩', 118),
+('插画', 119),
+('意象', 119),
+('美好', 119),
+('色彩', 119),
+('插画', 120),
+('意象', 120),
+('美好', 120),
+('色彩', 120),
+('插画', 121),
+('意象', 121),
+('美好', 121),
+('色彩', 121),
+('插画', 122),
+('意象', 122),
+('美好', 122),
+('色彩', 122),
+('插画', 123),
+('意象', 123),
+('美好', 123),
+('色彩', 123),
+('插画', 124),
+('意象', 124),
+('美好', 124),
+('色彩', 124),
+('插画', 125),
+('意象', 125),
+('美好', 125),
+('色彩', 125),
+('插画', 126),
+('意象', 126),
+('美好', 126),
+('色彩', 126),
+('插画', 127),
+('意象', 127),
+('美好', 127),
+('色彩', 127),
+('插画', 128),
+('意象', 128),
+('美好', 128),
+('色彩', 128),
+('javaee', 129),
+('dsf', 130),
+('asd', 131),
+('ghhh', 132),
+('fhjgb', 133);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(32) NOT NULL,
+  `user_name` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `avatar_path` varchar(128) DEFAULT NULL,
+  `email` varchar(128) DEFAULT NULL,
+  `city` varchar(32) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `birthday` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_name`, `password`, `avatar_path`, `email`, `city`, `gender`, `birthday`, `description`) VALUES
+(14, '锅包又', 'wzyddg', 'files/avatar/14', '104@qq.com', 'SHANGHAI', 'female', '1994-10-04 16:00:00', '这次不要让我失望'),
+(15, 'zsr', 'zsrhhhh', 'files/a8.jpg', 'zsr@gmail.com', 'lanzhou ', 'male', '1995-06-25 16:00:00', '这是一个十分厉害的人'),
+(16, '鱼香鸡丁', '12345', 'files/port2.jpg', 'yxjdjd@qq.com', NULL, NULL, '2015-07-08 16:00:00', NULL),
+(17, '滑炒鱼片', '12345', 'files/port2.jpg', 'hcyp@qq.com', NULL, NULL, '2015-07-01 16:00:00', NULL),
+(18, '韭黄炒蛋', '12345', 'files/avatar/18', 'jhcd@qq.com', 'null', 'classified', '2015-07-10 16:00:00', 'null'),
+(19, '孜然羊肉', '12345678', 'files/p27.jpg', 'zryr@qq.com', '上', 'classified', '2015-07-07 16:00:00', 'fgtdhfhdsgsdfssfsfsd'),
+(20, '酱爆猪肝', '12345', 'files/port2.jpg', 'jbzg@qq.com', NULL, NULL, '2015-06-30 16:00:00', NULL),
+(21, '糖醋排条', '12345', 'files/port2.jpg', 'tcpt@qq.com', NULL, NULL, '2015-07-05 16:00:00', NULL),
+(22, '川香鸡杂', '12345', 'files/port2.jpg', 'cxjz@qq.com', NULL, NULL, '2015-06-30 16:00:00', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `album`
+--
+ALTER TABLE `album`
+  ADD PRIMARY KEY (`album_id`),
+  ADD KEY `setter_id` (`setter_id`);
+
+--
+-- Indexes for table `album_included`
+--
+ALTER TABLE `album_included`
+  ADD KEY `picture_id` (`picture_id`),
+  ADD KEY `album_included_ibfk_1` (`album_id`);
+
+--
+-- Indexes for table `album_liked`
+--
+ALTER TABLE `album_liked`
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `album_liked_ibfk_1` (`album_id`);
+
+--
+-- Indexes for table `friend`
+--
+ALTER TABLE `friend`
+  ADD KEY `friend_id` (`friend_id`),
+  ADD KEY `friend_ibfk_1` (`my_id`);
+
+--
+-- Indexes for table `group`
+--
+ALTER TABLE `group`
+  ADD PRIMARY KEY (`group_id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD KEY `setter_id` (`setter_id`);
+
+--
+-- Indexes for table `group_comment`
+--
+ALTER TABLE `group_comment`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `group_member`
+--
+ALTER TABLE `group_member`
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `group_member_ibfk_1` (`group_id`);
+
+--
+-- Indexes for table `picture`
+--
+ALTER TABLE `picture`
+  ADD PRIMARY KEY (`picture_id`),
+  ADD KEY `poster_id` (`poster_id`);
+
+--
+-- Indexes for table `picture_comment`
+--
+ALTER TABLE `picture_comment`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `picture_id` (`picture_id`),
+  ADD KEY `user_id` (`user_id`);
+
+ALTER TABLE `album_comment`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `album_id` (`album_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `picture_liked`
+--
+ALTER TABLE `picture_liked`
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `picture_liked_ibfk_1` (`picture_id`);
+
+--
+-- Indexes for table `picture_tag`
+--
+ALTER TABLE `picture_tag`
+  ADD KEY `picture_id` (`picture_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `album`
+--
+ALTER TABLE `album`
+  MODIFY `album_id` int(32) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `group`
+--
+ALTER TABLE `group`
+  MODIFY `group_id` int(32) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `group_comment`
+--
+ALTER TABLE `group_comment`
+  MODIFY `comment_id` int(32) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+
+ALTER TABLE `album_comment`
+  MODIFY `comment_id` int(32) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `picture`
+--
+ALTER TABLE `picture`
+  MODIFY `picture_id` int(32) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=134;
+--
+-- AUTO_INCREMENT for table `picture_comment`
+--
+ALTER TABLE `picture_comment`
+  MODIFY `comment_id` int(32) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(32) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
+-- 限制导出的表
+--
+
+--
+-- 限制表 `album`
+--
+ALTER TABLE `album`
+  ADD CONSTRAINT `album_ibfk_1` FOREIGN KEY (`setter_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `album_included`
+--
+ALTER TABLE `album_included`
+  ADD CONSTRAINT `album_included_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `album_included_ibfk_2` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `album_liked`
+--
+ALTER TABLE `album_liked`
+  ADD CONSTRAINT `album_liked_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `album_liked_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `friend`
+--
+ALTER TABLE `friend`
+  ADD CONSTRAINT `friend_ibfk_1` FOREIGN KEY (`my_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `friend_ibfk_2` FOREIGN KEY (`friend_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `group`
+--
+ALTER TABLE `group`
+  ADD CONSTRAINT `group_ibfk_1` FOREIGN KEY (`setter_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `group_comment`
+--
+ALTER TABLE `group_comment`
+  ADD CONSTRAINT `group_comment_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `album_comment`
+  ADD CONSTRAINT `album_comment_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `album_comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+--
+-- 限制表 `group_member`
+--
+ALTER TABLE `group_member`
+  ADD CONSTRAINT `group_member_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_member_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `picture`
+--
+ALTER TABLE `picture`
+  ADD CONSTRAINT `picture_ibfk_1` FOREIGN KEY (`poster_id`) REFERENCES `user` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- 限制表 `picture_comment`
+--
+ALTER TABLE `picture_comment`
+  ADD CONSTRAINT `picture_comment_ibfk_1` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `picture_comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `picture_liked`
+--
+ALTER TABLE `picture_liked`
+  ADD CONSTRAINT `picture_liked_ibfk_1` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `picture_liked_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `picture_tag`
+--
+ALTER TABLE `picture_tag`
+  ADD CONSTRAINT `picture_tag_ibfk_1` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

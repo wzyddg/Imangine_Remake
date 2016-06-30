@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'josefin-regular';
+    src: url('../fonts/josefinsans-regular.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/josefinsans-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/josefinsans-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/josefinsans-regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/josefinsans-regular.svg#josefin-regular') format('svg'); /* Legacy iOS */
+}
+body{
+    font-family: 'josefin-regular' !important;
+}
